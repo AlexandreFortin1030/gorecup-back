@@ -33,10 +33,10 @@ class LoginView(APIView):
     permission_classes=[]
 
     def post(self, request:Request):
-        email = request.data.get("email") 
+        username = request.data.get("username") 
         password = request.data.get("password")
 
-        user = authenticate(email=email, password=password)
+        user = authenticate(username=username, password=password)
 
 
 
@@ -49,7 +49,7 @@ class LoginView(APIView):
             }
             return Response(data=response, status=status.HTTP_200_OK)
         else:
-            return Response(data={"message": "Invalid email or password"})
+            return Response(data={"message": "Invalid username or password"})
 
     def get(self, request:Request):
         content = {
